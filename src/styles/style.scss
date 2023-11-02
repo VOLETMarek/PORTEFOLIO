@@ -1,0 +1,318 @@
+@use 'variables' as v;
+@import 'mixins';
+
+// Styles for Mobiles
+
+    // Global
+    body {
+        @include color (v.$background, v.$text-color);
+        max-width: 767px;
+        margin: auto;
+        padding: v.$medium-padding;
+        font-family: v.$family;
+        line-height: 1.5em;
+        scroll-behavior: smooth;
+        // scrollbar firefox & microsoft edge
+        scrollbar-color: v.$primary-color;
+    }
+
+    // scrollbar chrome
+    ::-webkit-scrollbar {
+        width: 12px;
+        background-color: v.$tertiary-color;
+      }
+      
+    ::-webkit-scrollbar-thumb {
+        background-color: v.$primary-color;
+        border-radius: 24px;
+    }
+
+    body, header, main {
+        @include column-center(stretch, 48px);
+    }
+
+    a {
+        color: v.$text-color;
+        height: 30px;
+        text-decoration: none;
+        &:visited{
+            color: v.$text-color; 
+        }
+        &:over{
+            cursor: pointer;
+        }
+    }
+
+    article {
+        @include column-center(center, 20px);
+        padding: v.$medium-padding;
+        @include border(v.$primary-color, 2px, 48px);
+    }
+
+    h1 {
+        font-size: v.$x-large-size;
+        font-weight: v.$bold-weight; 
+    }
+
+    h2 {
+        background-color: v.$tertiary-color;
+        @include small-padding();
+        font-size: v.$large-size;
+        font-weight: v.$medium-weight;
+        @include border(v.$secondary-color, 2px, 12px);
+        &::after {
+            content: "";
+            background-color: v.$primary-color;
+            display: block;
+            height: 1px;
+            transform: scale(0);
+            transition: transform 0.2s ease-in-out;  
+        }
+        &:hover::after {
+            transform: scale(1);
+        }
+        &:hover {
+            border-color: v.$primary-color;
+        }
+    }
+
+    h3 {
+        background-color: v.$primary-color;
+        color: v.$tertiary-color;
+        @include small-padding();
+        @include border(v.$tertiary-color, 1px, 12px);
+    }
+
+    h4 {
+        font-size: v.$small-size;
+        font-style: italic;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+
+    h1, h2, h3, h4, li {
+        text-align: center;
+    }
+
+    img, h3 {
+        transition: .3s;
+        &:hover {
+            transform: scale(1.1); 
+        }
+    }
+
+    .nav, .intro, section, footer {
+        @include border(v.$primary-color, 2px, 48px);
+    }
+
+    p {
+        padding: 0 v.$small-padding 0 v.$small-padding;
+        text-align: center;
+        word-spacing: 0.1em;
+    }
+
+    section, footer {
+        @include column-center(center, 24px);
+        padding: v.$large-padding;
+    }
+
+    // Header 
+    header {
+        .nav {
+            background-color: v.$tertiary-color;
+            @include medium-padding();
+            &-list {
+                @include row-between();
+            }
+            &-link {
+                @include flex(inline-flex, column, center, center, nowrap, 3px);
+            }
+            &-icon {
+                background-color:v.$primary-color;
+                @include dimension(20px, 20px);
+                @include border-image();
+            }
+            &-profilpic {
+                align-self: center;
+                @include dimension(180px, 180px);
+                @include border-image();
+            }
+        }
+    }
+
+    // Main
+    main {
+        .intro {
+            background-color: v.$tertiary-color;
+            @include border-top-bottom();
+        }
+        .skills {
+            background-color: v.$tertiary-color ;
+            &-container {
+                @include column-center(center, 20px);
+            }
+            &-list {
+                color: v.$primary-color;
+                @include flex(flex, row, center, stretch, wrap, 8px); 
+            }
+            &-item {
+                background-color: v.$tertiary-color;
+                @include small-padding();
+                @include border(v.$primary-color, 1px, 12px);
+                transition: .1s;
+                &:hover {
+                    transform: scale(1.1); 
+                }
+                cursor: default;
+            }
+            &-text {
+                padding: v.$medium-padding;
+                @include border(v.$primary-color, 1px, 12px);
+            }
+            &-job {
+                text-decoration: underline;
+                text-underline-offset: 2px;
+            }   
+        }
+
+        // Projects
+        .projects {
+            background-color: v.$tertiary-color ;
+            &-image {
+                @include dimension(100%, auto);
+                border-radius: 48px;
+                &:hover {
+                    transform: scale(1);
+                }
+            }
+            &-subtitle {
+                align-self: stretch;
+                margin: 0 v.$large-margin 0 v.$large-margin;
+                @include small-padding();
+                &:hover {
+                    transform: scale(1);
+                }
+            }
+            &-hostlink, &-codelink {
+                background-color: v.$background;
+                color: v.$primary-color;
+                @include row-center();
+                align-self: stretch;
+                @include small-padding();
+                @include border-list();
+                transition: .1s;
+                &:hover {
+                    transform: scale(1.04); 
+                }
+            }
+            &-list {
+                background-color: v.$background;
+                @include row-between();
+                align-self: stretch;
+                padding: v.$small-padding;
+                @include border-list();
+            }
+            &-item {
+                @include row-center();
+                height: 30px;
+            }
+            &-icon {
+                background-color:v.$primary-color;
+                @include dimension (24px, 24px);
+                @include border-image();
+            }
+            &-folder {
+                @include row-center();
+                padding: v.$s-m-padding v.$medium-padding v.$s-m-padding v.$medium-padding;
+                @include border(v.$text-color, 1px, 24px);
+                transition: .3s;
+                &:hover {
+                    transform: scale(1.05); 
+                }
+            }
+        }
+    }
+
+    // Footer
+    .footer {
+        background-color: v.$tertiary-color;
+        &-list {
+            background-color: v.$background;
+            @include row-between();
+            padding: v.$small-padding;
+            @include border-list();
+        }
+        &-item {
+            display: flex;
+            padding: 0 v.$medium-padding 0 v.$medium-padding;
+        }
+        &-link {
+            @include row-center();
+        }
+        &-icon {
+            background-color:v.$primary-color;
+            @include dimension (24px, 24px);
+            @include border-image();
+        }
+    }
+
+
+// Styles for tablets (more than 768px)
+
+@media screen and (min-width: 768px) {
+    main {
+        .skills {
+            @include flex-wrap();
+            &-title {
+                order: 0;
+                margin: 1em 10em 1em 10em;
+                width: 100%;
+            }
+            &-container {
+                padding: v.$medium-padding;
+                margin-bottom: v.$medium-margin;
+                width: 40%;
+            }
+            div:nth-child(2) {
+                order: 1;
+                align-self: baseline;
+                h3:nth-child(n+2) {
+                    margin-top: 4.7em;
+                }
+            }
+            div:nth-child(3) {
+                order: 2;
+            }
+        }
+        .projects {
+            @include flex-wrap();
+            &-title {
+                order: 0;
+                margin: 1em 10em 1em 10em;
+                width: 100%;
+            }
+            &-article {
+                width: 40%;
+            }
+            &-list {
+                margin: 0 3em 0 3em;
+            }
+            &-folder {
+                margin: v.$medium-margin 0 v.$medium-margin 0;
+            }
+        }
+    }
+    .footer {
+        &-title {
+            margin: 1em 10em 1em 10em;
+        }
+    }
+}
+
+// styles for desktops (more than 992px)
+
+// @media screen and (min-width: 992px) {
+//     body {
+//         @include color (rgb(22, 94, 15), v.$text-color);
+//     }
+// }

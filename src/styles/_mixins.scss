@@ -1,0 +1,107 @@
+@use 'variables' as v;
+
+// color
+
+@mixin color($background-color, $color) {
+    background-color: $background-color;
+    color: $color;
+}
+
+// flex 
+
+@mixin flex($display, $direction, $disposition, $oppdisposition, $wrap, $gap) {
+    display: $display;
+    flex-direction: $direction;
+    justify-content: $disposition;
+    align-items: $oppdisposition;
+    flex-wrap: $wrap;
+    gap: $gap;
+}
+
+@mixin flex-wrap() {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+}
+
+@mixin row-center() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin row-between() {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin column-center($align-items, $gap) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: $align-items;
+    gap: $gap;
+}
+
+// width & height
+
+@mixin dimension($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+// margin & padding
+
+@mixin small-padding() {
+    padding-top: v.$x-small-padding;
+    padding-right: v.$small-padding;
+    padding-bottom: v.$x-small-padding;
+    padding-left: v.$small-padding;
+}
+
+@mixin medium-padding() {
+    padding-top: v.$medium-padding;
+    padding-right: v.$large-padding;
+    padding-bottom: v.$medium-padding;
+    padding-left: v.$large-padding;
+}
+
+// border 
+
+@mixin border($color, $thickness, $radius) {
+    border: solid $color $thickness;
+    border-radius: $radius;
+}
+
+@mixin border-image() {
+    border: solid v.$primary-color 4px;
+    border-radius: 50%;
+}
+
+@mixin border-list() {
+    border: solid v.$secondary-color 1px;
+    border-radius: 24px;
+}
+
+@mixin border-top-bottom() {
+    border-top: solid v.$primary-color 2px;
+    border-bottom: solid v.$primary-color 2px;
+    border-radius: 48px;
+}
+
+/*
+
+order styles
+
+bg
+color
+flex
+dimension
+m/p
+font
+text
+border
+animations
+
+*/
